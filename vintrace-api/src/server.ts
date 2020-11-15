@@ -1,8 +1,7 @@
 import fastify from 'fastify';
-import cors from 'cors';
 
 import healthHandler from './modules/health/routes';
-import productsHandler from './modules/products/routes';
+import breakdownsHandler from './modules/breakdowns/routes';
 
 require('./plugins/db');
 
@@ -33,7 +32,7 @@ function createServer() {
 	});
 
 	server.register(healthHandler, { prefix: '/health' });
-	server.register(productsHandler, { prefix: '/product' });
+	server.register(breakdownsHandler, { prefix: '/breakdown' });
 
 	server.setErrorHandler((error, req, res) => {
 		req.log.error(error.toString());
