@@ -22,6 +22,8 @@ export interface WineDetailsViewModel {
 export interface WineSearchResultViewModel {
   lotCode: string;
   description: string;
+  volume: number,
+  tank: string,
 }
 
 export interface ValidationErrorViewModel {
@@ -160,7 +162,12 @@ export const searchWineDetails = async (filter: string): Promise<WineSearchResul
       ],
     });
 
-    return result.map(result => ({ description: result.description, lotCode: result.lotCode }));
+    return result.map(result => ({
+      description: result.description,
+      lotCode: result.lotCode,
+      tank: result.tankCode,
+      volume: result.volume,
+    }));
   } catch (err) {
     throw err;
   }

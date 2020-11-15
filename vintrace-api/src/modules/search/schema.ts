@@ -1,6 +1,8 @@
 export const wineSearchResultSchema = {
   lotCode: { type: 'string' },
   description: { type: 'string' },
+  volume: { type: 'number' },
+  tank: { type: 'string' },
 };
 
 export const searchWineDetailsSchema = {

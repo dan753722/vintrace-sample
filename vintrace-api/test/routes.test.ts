@@ -62,7 +62,7 @@ describe('Breakdown CRUD', () => {
 			url: `search?filter=11YV`,
 		});
 		expect(response.statusCode).toBe(200);
-		expect(response.body).toBe('[{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\"},{\"lotCode\":\"11YVCHAR002\",\"description\":\"\"}]');
+		expect(response.body).toBe('[{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\",\"volume\":1000,\"tank\":\"T25-01\"},{\"lotCode\":\"11YVCHAR002\",\"description\":\"\",\"volume\":5077,\"tank\":\"T25-06\"}]');
 		done();
 	});
 
@@ -72,7 +72,7 @@ describe('Breakdown CRUD', () => {
 			url: `search?filter=${encodeURIComponent('Yarra Valley')}`,
 		});
 		expect(response.statusCode).toBe(200);
-		expect(response.body).toBe('[{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\"}]');
+		expect(response.body).toBe('[{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\",\"volume\":1000,\"tank\":\"T25-01\"}]');
 		done();
 	});
 });
