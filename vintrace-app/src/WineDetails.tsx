@@ -1,6 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, MouseEvent } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Fab } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import Popover from '@material-ui/core/Popover';
 import styled from 'styled-components';
+
 import BreakdownContainer from './BreakdownContainer';
 import { WineDetail } from './services/WineDetail';
 
@@ -108,12 +112,57 @@ text-decoration: none;
 padding: 10px 14px;
 `;
 
+const StyledFab = styled(Fab)`
+  background-color: #00ADA8 !important;
+  float: right;
+`;
+
 type WineProps = WineDetail;
 
 const WineDetails: FunctionComponent<WineProps> = (props: WineProps) => {
+  const [anchorEl, setAnchorEl] = useState<EventTarget & Element | null>(null);
+  
+  const handleClick = (event: MouseEvent) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
   return (
     <WineDetailsWrapper>
       <WineDetailsHeader>
+        <StyledFab
+          color="secondary"
+          aria-label="edit"
+          aria-describedby={id}
+          onClick={handleClick}
+        >
+          <EditIcon />
+        </StyledFab>
+        <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        This feature is not supported yet.
+      </Popover>
+
+
+
         <LotCode>{props.lotCode}</LotCode>
         <Description>{props.description}</Description>
       </WineDetailsHeader>

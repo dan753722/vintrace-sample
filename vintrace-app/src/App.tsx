@@ -3,12 +3,14 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
+  Switch,
 } from "react-router-dom";
 import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 
 import WineDetailsContainer from './WineDetailsContainer';
+import SearchContainer from './SearchContainer';
 
 const AppContainer = styled.div`
   margin: auto;
@@ -21,7 +23,11 @@ function App() {
   return (
     <Router>
       <AppContainer>
-        <Route path="/wines/:lotCode" component={WineDetailsContainer} />
+        <Switch>
+          <Route path="/wines/:lotCode" component={WineDetailsContainer} />
+          <Route path="/search" component={SearchContainer} />
+          <Route path="*" component={SearchContainer} />
+        </Switch>
       </AppContainer>
 
       {/* <div className="App">
