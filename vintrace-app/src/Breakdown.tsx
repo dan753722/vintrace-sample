@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import { Breakdowns } from './services/Breakdowns';
 
@@ -120,7 +121,7 @@ const Breakdown: FunctionComponent<BreakdownProps> = (props: BreakdownProps) => 
           <ShowMoreButton
             onClick={() => setShowMore(true)}
           >
-            Show more
+            Show more <KeyboardArrowDownIcon />
           </ShowMoreButton>
         </ShowMoreButtonContainer>}
     </BreakdownTableWrapper>
