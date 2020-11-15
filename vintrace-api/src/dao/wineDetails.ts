@@ -19,6 +19,11 @@ export interface WineDetailsViewModel {
   owner: string;
 };
 
+export interface WineSearchResultViewModel {
+  lotCode: string;
+  description: string;
+}
+
 export interface ValidationErrorViewModel {
   code: number;
   message: string;
@@ -144,3 +149,20 @@ export const getWineDetails = async (lotCode: string): Promise<WineDetailsViewMo
     throw err;
   }
 };
+
+export const searchWineDetails = async (filter: string): Promise<WineSearchResultViewModel[]> => {
+  try {
+    const searchPattern = new RegExp(filter, 'i');
+    const result: BreakdownDocument[] = await BreakdownModel.find({
+      $or: [
+        { lotCode: searchPattern },
+        { description: searchPattern },
+      ],
+    });
+
+    return result.map(result => ({ description: result.description, lotCode: result.lotCode }));
+  } catch (err) {
+    throw err;
+  }
+};
+

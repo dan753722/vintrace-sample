@@ -55,4 +55,24 @@ describe('Breakdown CRUD', () => {
 		expect(response.body).toBe('{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\",\"volume\":1000,\"tank\":\"T25-01\",\"productState\":\"Ready for bottling\",\"owner\":\"YV Wines Pty Ltd\"}');
 		done();
 	});
+
+	test('Wine Search by lotCode GET Route', async (done) => {
+		const response = await server.inject({
+			method: 'GET',
+			url: `search?filter=11YV`,
+		});
+		expect(response.statusCode).toBe(200);
+		expect(response.body).toBe('[{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\"},{\"lotCode\":\"11YVCHAR002\",\"description\":\"\"}]');
+		done();
+	});
+
+	test('Wine Search by description GET Route', async (done) => {
+		const response = await server.inject({
+			method: 'GET',
+			url: `search?filter=${encodeURIComponent('Yarra Valley')}`,
+		});
+		expect(response.statusCode).toBe(200);
+		expect(response.body).toBe('[{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\"}]');
+		done();
+	});
 });
