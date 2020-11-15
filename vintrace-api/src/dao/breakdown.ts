@@ -80,7 +80,7 @@ const buildBreakdownsViewModel = (breakdownType: string, components: Component[]
       breakdown: Object.keys(breakdownReducer).map(key => ({
         percentage: breakdownReducer[key].toString(),
         key: key.toString(),
-      })),
+      })).sort((a, b) => -1*(a.percentage - b.percentage)),
     };
   }
 

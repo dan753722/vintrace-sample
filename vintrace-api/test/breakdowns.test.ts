@@ -69,27 +69,44 @@ describe('Breakdown CRUD', () => {
 			const result = await getBreakdowns(VARIETY, (data1 as Breakdown).lotCode);
 			expect(result.breakdownType).toBe('variety');
 			expect(result.breakdown).toHaveLength(2);
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === 'Pinot Noir' && item.percentage === '10')).toBeDefined();
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === 'Chardonnay' && item.percentage === '90')).toBeDefined();
+
+			expect(result.breakdown[0].key).toBe('Chardonnay');
+			expect(result.breakdown[0].percentage).toBe('90');
+
+			expect(result.breakdown[1].key).toBe('Pinot Noir');
+			expect(result.breakdown[1].percentage).toBe('10');
 		});
 
 		test('It should get breakdown by region', async () => {
 			const result = await getBreakdowns(REGION, (data1 as Breakdown).lotCode);
 			expect(result.breakdownType).toBe('region');
 			expect(result.breakdown).toHaveLength(3);
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === 'Mornington' && item.percentage === '5')).toBeDefined();
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === 'Yarra Valley' && item.percentage === '80')).toBeDefined();
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === 'Macedon' && item.percentage === '15')).toBeDefined();
+
+			expect(result.breakdown[0].key).toBe('Yarra Valley');
+			expect(result.breakdown[0].percentage).toBe('80');
+
+			expect(result.breakdown[1].key).toBe('Macedon');
+			expect(result.breakdown[1].percentage).toBe('15');
+
+			expect(result.breakdown[2].key).toBe('Mornington');
+			expect(result.breakdown[2].percentage).toBe('5');
 		});
 
 		test('It should get breakdown by year-variety', async () => {
 			const result = await getBreakdowns(YEAR_VARIETY, (data1 as Breakdown).lotCode);
 			expect(result.breakdownType).toBe('year-variety');
 			expect(result.breakdown).toHaveLength(4);
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === '2011-Pinot Noir' && item.percentage === '5')).toBeDefined();
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === '2011-Chardonnay' && item.percentage === '80')).toBeDefined();
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === '2010-Pinot Noir' && item.percentage === '5')).toBeDefined();
-			expect(result.breakdown.find((item: BreakdownViewModel) => item.key === '2010-Chardonnay' && item.percentage === '10')).toBeDefined();
+			expect(result.breakdown[0].key).toBe('2011-Chardonnay');
+			expect(result.breakdown[0].percentage).toBe('80');
+			
+			expect(result.breakdown[1].key).toBe('2010-Chardonnay');
+			expect(result.breakdown[1].percentage).toBe('10');
+
+			expect(result.breakdown[2].key).toBe('2011-Pinot Noir');
+			expect(result.breakdown[2].percentage).toBe('5');
+			
+			expect(result.breakdown[3].key).toBe('2010-Pinot Noir');
+			expect(result.breakdown[3].percentage).toBe('5');
 		});
 	})
 });

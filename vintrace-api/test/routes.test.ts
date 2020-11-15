@@ -33,7 +33,7 @@ describe('Breakdown CRUD', () => {
 			url: `breakdown/year/${data1.lotCode}`,
 		});
     expect(response.statusCode).toBe(200);
-    expect(response.body).toBe('{\"breakdownType\":\"year\",\"breakdown\":[{\"percentage\":\"15\",\"key\":\"2010\"},{\"percentage\":\"85\",\"key\":\"2011\"}]}');
+    expect(response.body).toBe('{\"breakdownType\":\"year\",\"breakdown\":[{\"percentage\":\"85\",\"key\":\"2011\"},{\"percentage\":\"15\",\"key\":\"2010\"}]}');
 		done();
 	});
 
