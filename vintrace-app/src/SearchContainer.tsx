@@ -4,8 +4,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import ClearIcon from '@material-ui/icons/Clear';
 import styled from 'styled-components';
-import Popover from '@material-ui/core/Popover';
 import Button from '@material-ui/core/Button';
+import Highlighter from "react-highlight-words";
 
 import useFetchSearchResultsService from './services/useFetchSearchResultsService';
 import { SearchResults } from './services/SearchResults';
@@ -117,10 +117,6 @@ const SearchContainer: FunctionComponent = () => {
   const service = useFetchSearchResultsService(filter);
 
   const [anchorEl, setAnchorEl] = useState<EventTarget & Element | null>(null);
-  
-  const handleClick = (event: MouseEvent) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleClose = () => {
     setFilter('');
@@ -169,8 +165,22 @@ const SearchContainer: FunctionComponent = () => {
                   to={`/wines/${searchResult.lotCode}`}
                 >
                   <LeftListItem>
-                    <LotCodeItem>{searchResult.lotCode}</LotCodeItem>
-                    <NonLotCodeItem>{searchResult.description}</NonLotCodeItem>
+                    <LotCodeItem>
+                      <Highlighter
+                        searchWords={[filter]}
+                        autoEscape={true}
+                        textToHighlight={searchResult.lotCode}
+                        highlightStyle={{backgroundColor: '#90EE90'}}
+                      />
+                    </LotCodeItem>
+                    <NonLotCodeItem>
+                      <Highlighter
+                        searchWords={[filter]}
+                        autoEscape={true}
+                        textToHighlight={searchResult.description}
+                        highlightStyle={{backgroundColor: '#90EE90'}}
+                      />
+                    </NonLotCodeItem>
                   </LeftListItem>
                   <RightListItem>
                     <NonLotCodeItem>{searchResult.volume} L</NonLotCodeItem>
