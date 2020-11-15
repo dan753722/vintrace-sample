@@ -4,17 +4,25 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 
 import WineDetailsContainer from './WineDetailsContainer';
 
+const AppContainer = styled.div`
+  margin: auto;
+  margin-top: 142px;
+  width: 50%;
+  background: transparent;
+`;
+
 function App() {
   return (
     <Router>
-      <div>
+      <AppContainer>
         <Route path="/wines/:lotCode" component={WineDetailsContainer} />
-      </div>
+      </AppContainer>
 
       {/* <div className="App">
         <header className="App-header">
