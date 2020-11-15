@@ -181,7 +181,7 @@ const WineDetails: FunctionComponent<WineProps> = (props: WineProps) => {
       <WineSummary>
         <WineSummaryItem>
           <SummaryItemTitle>Volume</SummaryItemTitle>
-          <SummaryItemContent>{props.volume}</SummaryItemContent>
+          <SummaryItemContent>{props.volume} L</SummaryItemContent>
         </WineSummaryItem>
         <WineSummaryItem>
           <SummaryItemTitle>Tank code</SummaryItemTitle>
