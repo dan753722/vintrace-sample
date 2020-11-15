@@ -5,7 +5,11 @@ import * as data3 from '../../data/15MPPN002-VK.json';
 import BreakdownModel from '../modules/breakdowns/entity';
 
 export default async () => {
-  await BreakdownModel.create(data1);
-  await BreakdownModel.create(data2);
-  await BreakdownModel.create(data3);
+  const result = await BreakdownModel.countDocuments({ lotCode: {$in: [data1.lotCode, data2.lotCode, data3.lotCode]} });
+  console.log('>>> result', result);
+  if (result === 0 && process.env.NODE_ENV === 'dev') {
+    await BreakdownModel.create(data1);
+    await BreakdownModel.create(data2);
+    await BreakdownModel.create(data3);
+  }
 };

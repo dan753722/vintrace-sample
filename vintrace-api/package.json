@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch './src/**/*.ts' --exec ts-node ./src/index.ts",
+    "dev": "NODE_ENV=dev nodemon --watch './src/**/*.ts' --exec ts-node ./src/index.ts",
     "build": "tsc",
-    "test": "MONGO_DATABASE=test_ jest --coverage",
+    "test": "NODE_ENV=test MONGO_DATABASE=test_ jest --coverage --runInBand --detectOpenHandles --forceExit",
     "test:watch": "npm run test -- --watchAll",
     "commit": "git cz"
   },
