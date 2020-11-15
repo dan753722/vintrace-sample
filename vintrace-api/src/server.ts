@@ -2,6 +2,7 @@ import fastify from 'fastify';
 
 import healthHandler from './modules/health/routes';
 import breakdownsHandler from './modules/breakdowns/routes';
+import wineDetailsHandler from './modules/wineDetails/routes';
 
 require('./plugins/db');
 
@@ -33,6 +34,7 @@ function createServer() {
 
 	server.register(healthHandler, { prefix: '/health' });
 	server.register(breakdownsHandler, { prefix: '/breakdown' });
+	server.register(wineDetailsHandler, { prefix: '/wine-detail' });
 
 	server.setErrorHandler((error, req, res) => {
 		req.log.error(error.toString());

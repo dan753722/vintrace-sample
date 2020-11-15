@@ -1,1 +1,1 @@
-export * from './breakdown';
+export * from './wineDetails';

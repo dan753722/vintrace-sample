@@ -10,6 +10,15 @@ export interface BreakdownsViewModel {
   breakdown: BreakdownViewModel[];
 };
 
+export interface WineDetailsViewModel {
+  lotCode: string;
+  description: string;
+  volume: number;
+  tank: string;
+  productState: string;
+  owner: string;
+};
+
 export interface ValidationErrorViewModel {
   code: number;
   message: string;
@@ -62,7 +71,7 @@ const buildBreakdownsViewModel = (breakdownType: string, components: Component[]
     }, {});
   } else if (breakdownType === YEAR_VARIETY) {
     breakdownReducer = components.reduce((result, component: Component) => {
-      const key = `${component.year}-${component.variety}`;
+      const key = `${component.year} - ${component.variety}`;
       if (result[key]) {
         result[key] += component.percentage;
       }
@@ -112,6 +121,25 @@ export const getBreakdowns = async (breakdownType: string, lotCode: string): Pro
   try {
     const breakdown: BreakdownDocument = await BreakdownModel.findOne({lotCode});
     return buildBreakdownsViewModel(breakdownType, breakdown.components);
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const getWineDetails = async (lotCode: string): Promise<WineDetailsViewModel | null> => {
+  try {
+    const result: BreakdownDocument = await BreakdownModel.findOne({ lotCode });
+    if (result) {
+      return {
+        lotCode: result.lotCode,
+        description: result.description,
+        volume: result.volume,
+        tank: result.tankCode,
+        productState: result.productState,
+        owner: result.ownerName,
+      };
+    }
+    return null;
   } catch (err) {
     throw err;
   }

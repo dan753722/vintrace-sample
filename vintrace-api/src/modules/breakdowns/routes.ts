@@ -1,7 +1,7 @@
 import { canGetBreakdowns, getBreakdowns } from '../../dao/index';
 import { getBreakdownsSchema } from './schema';
 
-export default function productHandler(app, options, next) {
+export default function breakdownHandler(app, options, next) {
   app.get(
     '/:breakdownType/:lotCode',
     { schema: getBreakdownsSchema },

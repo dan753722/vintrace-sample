@@ -96,16 +96,16 @@ describe('Breakdown CRUD', () => {
 			const result = await getBreakdowns(YEAR_VARIETY, (data1 as Breakdown).lotCode);
 			expect(result.breakdownType).toBe('year-variety');
 			expect(result.breakdown).toHaveLength(4);
-			expect(result.breakdown[0].key).toBe('2011-Chardonnay');
+			expect(result.breakdown[0].key).toBe('2011 - Chardonnay');
 			expect(result.breakdown[0].percentage).toBe('80');
 			
-			expect(result.breakdown[1].key).toBe('2010-Chardonnay');
+			expect(result.breakdown[1].key).toBe('2010 - Chardonnay');
 			expect(result.breakdown[1].percentage).toBe('10');
 
-			expect(result.breakdown[2].key).toBe('2011-Pinot Noir');
+			expect(result.breakdown[2].key).toBe('2011 - Pinot Noir');
 			expect(result.breakdown[2].percentage).toBe('5');
 			
-			expect(result.breakdown[3].key).toBe('2010-Pinot Noir');
+			expect(result.breakdown[3].key).toBe('2010 - Pinot Noir');
 			expect(result.breakdown[3].percentage).toBe('5');
 		});
 	})

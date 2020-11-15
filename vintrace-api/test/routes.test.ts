@@ -40,10 +40,19 @@ describe('Breakdown CRUD', () => {
 	test('Health Route', async (done) => {
 		const response = await server.inject({
 			method: 'GET',
-			url: '/health'
+			url: '/health',
 		});
 		expect(response.statusCode).toBe(200);
 		done();
 	});
 
+	test('Wine Details Get Route', async (done) => {
+		const response = await server.inject({
+			method: 'GET',
+			url: `wine-detail/${data1.lotCode}`,
+		});
+		expect(response.statusCode).toBe(200);
+		expect(response.body).toBe('{\"lotCode\":\"11YVCHAR001\",\"description\":\"2011 Yarra Valley Chardonnay\",\"volume\":1000,\"tank\":\"T25-01\",\"productState\":\"Ready for bottling\",\"owner\":\"YV Wines Pty Ltd\"}');
+		done();
+	});
 });
