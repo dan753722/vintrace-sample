@@ -7,4 +7,5 @@
 - ensure docker is running as mentioned in the steps above.
 - `npm run dev`
 - go to http://localhost:3000/docs/index.html and see the swagger definitions for the APIs.
-
+- go to vintrace-app
+- `npm run start` to launch the react app.
